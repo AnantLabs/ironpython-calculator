@@ -1,0 +1,43 @@
+﻿<Window x:Class="Calculator.DockWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
+        xmlns:internal="clr-namespace:Calculator"
+        Title="Pyton Calculator" Height="500" Width="800" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="22"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="Exit" x:Name="FileExit" Click="FileExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Tools">
+                <MenuItem Header="GnuPlot Console" x:Name="ToolsGnuplot" Click="Tools_Click"/>
+                <MenuItem Header="On Screen Keyboard" x:Name="ToolsOsk" Click="Tools_Click"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="Built in functions" x:Name="HelpBuiltIn" Click="Help_Click"/>
+                <MenuItem Header="Python documentation" x:Name="HelpPython" Click="Help_Click"/>
+                <MenuItem Header="Application website" x:Name="HelpWeb" Click="Help_Click"/>
+            </MenuItem>
+        </Menu>
+        
+        <ad:DockingManager x:Name="DockManager" Grid.Row="1">
+            <ad:ResizingPanel Orientation="Horizontal">
+
+                <ad:DockablePane ad:ResizingPanel.ResizeWidth="250" x:Name="DockPlane">
+                    <internal:InputPanel x:Name="InputPanel" DockableStyle="AutoHide" IsCloseable="False" FloatingWindowSizeToContent="WidthAndHeight" IsLocked="True" />
+                    <internal:VariablesPanel x:Name="VariablePanel"  DockableStyle="AutoHide" IsCloseable="False" FloatingWindowSizeToContent="WidthAndHeight" IsLocked="True"/>
+                </ad:DockablePane>
+
+                <ad:DocumentPane SelectedIndex="0" x:Name="DocPlane">
+                    <internal:MainWindow x:Name="ConsoleWin" IsFloatingAllowed="False" IsLocked="True" />
+                </ad:DocumentPane>
+
+            </ad:ResizingPanel>
+        </ad:DockingManager>
+    </Grid>
+</Window>
