@@ -1,0 +1,68 @@
+﻿<ad:DocumentContent x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
+        xmlns:contr="clr-namespace:Calculator.Controls"
+        xmlns:syntax="clr-namespace:Calculator.Controls.SyntaxHighlight"
+        Title="Calculator Input" Height="500" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="18"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="90"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.RowSpan="4">
+            <Button Style="{StaticResource SideButton}" x:Name="ModeChange" Content="Calc.Mode" Click="ModeChange_Click"/>
+            <TextBlock Text="Output:"/>
+            <Button Style="{StaticResource SideButton}" Content="Clear"/>
+            <Button Style="{StaticResource SideButton}" x:Name="BtnSaveOutput" Click="BtnSaveOutput_Click">
+                <TextBlock Text="Save to file" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
+            <TextBlock Text="Input:"/>
+            <Button Style="{StaticResource SideButton}" x:Name="ImportButton" Click="ImportButton_Click">
+                <Button.Content>
+                    <TextBlock Text="Import Files.." TextWrapping="Wrap"/>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource SideButton}" x:Name="ClrButton" Content="Clear" Click="ClrButton_Click"/>
+            <Button Style="{StaticResource SideButton}" x:Name="ExecuteButton" Content="Execute" Click="ExecuteButton_Click"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Text="Mode:"/>
+            <TextBlock x:Name="CalcMode" Text="DEG" Margin="5,0,0,0" FontWeight="Bold" TextDecorations="Underline"/>
+        </StackPanel>
+
+
+        <contr:ConsoleControl Background="#ffe9ecfa" Grid.Row="1" OkFontColor="DarkGreen" ErrorFontColor="Red" WarningFontColor="Orange" BackgroundColor="#ffe9ecfa" DefaultFontColor="Black" CurrentForeground="Black" FontFamily="Consolas" FontSize="12pt" x:Name="Console">
+            <contr:ConsoleControl.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="2"/>
+                </Style>
+            </contr:ConsoleControl.Resources>
+        </contr:ConsoleControl>
+
+        <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="3"/>
+
+        <TabControl Grid.Row="3" TabStripPlacement="Right" x:Name="InputTabs" Grid.ColumnSpan="2">
+            <TabItem Header="Input" Width="90">
+                <Grid>
+                    <syntax:SyntaxHighlightTextBox x:Name="InputDisplay" FontFamily="Consolas" FontSize="12pt" KeyDown="InputDisplay_KeyDown"/>
+                    <contr:Working x:Name="WorkDisplay" Grid.Row="3" Visibility="Collapsed" IsEnabled="false"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="History">
+                <ListBox x:Name="HistoryView" Style="{StaticResource HistoryView}" MouseDoubleClick="HistoryView_MouseDoubleClick" />
+            </TabItem>
+        </TabControl>
+
+
+
+    </Grid>
+</ad:DocumentContent>
