@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using Calculator.Properties;
+using AutoUpdaterDotNET;
 
 namespace Calculator
 {
@@ -19,6 +20,9 @@ namespace Calculator
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            #if RELEASE
+                AutoUpdater.Start("http://localhost/AutoUpdater.NET_AppCast.xml", true);
+            #endif
             App.ConsoleWin = this.ConsoleWin;
             DockPlane.ToggleAutoHide();
             ApplySettings();
