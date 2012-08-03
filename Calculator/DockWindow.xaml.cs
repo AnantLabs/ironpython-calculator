@@ -21,7 +21,7 @@ namespace Calculator
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             #if RELEASE
-                AutoUpdater.Start("http://localhost/AutoUpdater.NET_AppCast.xml", true);
+            AutoUpdater.Start("http://ironpython-calculator.googlecode.com/files/update.xml", true);
             #endif
             App.ConsoleWin = this.ConsoleWin;
             DockPlane.ToggleAutoHide();
@@ -30,8 +30,12 @@ namespace Calculator
 
         private void ApplySettings()
         {
-            if (Settings.Default.WinLeft >= 0) this.Left = Settings.Default.WinLeft;
-            if (Settings.Default.WinTop >= 0) this.Top = Settings.Default.WinTop;
+            if (Settings.Default.WinLeft <= 0 && Settings.Default.WinTop <= 0) this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            else
+            {
+                this.Left = Settings.Default.WinLeft;
+                this.Top = Settings.Default.WinTop;
+            }
             if (Settings.Default.Width > 1) this.Width = Settings.Default.Width;
             if (Settings.Default.Height > 1) this.Height = Settings.Default.Height;
         }

@@ -5,13 +5,14 @@
 #define MyAppVersion "0.4"
 #define MyAppPublisher "Webmaster442"
 #define MyAppURL "http://pycalc.webmaster442.hu"
-#define MyAppExeName "MyProg.exe"
+#define MyAppExeName "Calculator.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{84C1C896-AF14-4406-ACBD-0E337B810EC0}
+UsePreviousAppDir=yes
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -22,7 +23,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 OutputDir=..\bin\setup
-OutputBaseFilename=ipycalc-setup
+OutputBaseFilename=ipycalc-setup_{#MyAppVersion}
 SolidCompression=True
 InternalCompressLevel=max
 
@@ -55,12 +56,12 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\bin\lib\*.*"; DestDir: "{app}\lib"; Flags: createallsubdirs recursesubdirs
-Source: "..\bin\*.dll"; DestDir: "{app}"
-Source: "..\bin\*.exe"; DestDir: "{app}"
-Source: "..\bin\*.manifest"; DestDir: "{app}"
-Source: "..\bin\*.config"; DestDir: "{app}"
-Source: "dotNetFx40_Client_setup.exe"; Flags: ignoreversion nocompression dontcopy
+Source: "..\bin\release\*.dll"; DestDir: "{app}"
+Source: "..\bin\release\*.exe"; DestDir: "{app}"
+Source: "..\bin\release\*.rtf"; DestDir: "{app}"
+Source: "..\bin\release\*.config"; DestDir: "{app}"
+Source: "..\bin\release\lib\*.*"; DestDir: "{app}\lib"; Flags: ignoreversion createallsubdirs recursesubdirs
+Source: "..\bin\release\gnuplot\*.*"; DestDir: "{app}\lib"; Flags: createallsubdirs recursesubdirs
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
