@@ -47,6 +47,7 @@ namespace Calculator
                 InputDisplay.Visibility = System.Windows.Visibility.Collapsed;
                 InputDisplay.IsEnabled = false;
                 App.Core.History.AddItem(_input);
+                App.SetTaskbarProgress(System.Windows.Shell.TaskbarItemProgressState.Indeterminate);
             }, null);
             App.Core.Calculate(_input);
             this.Dispatcher.Invoke((Action)delegate
@@ -58,6 +59,7 @@ namespace Calculator
                 Console.WriteBuffer();
                 InputDisplay.Text = "";
                 InputDisplay.Focus();
+                App.SetTaskbarProgress(System.Windows.Shell.TaskbarItemProgressState.None);
             }, null);
         }
 
