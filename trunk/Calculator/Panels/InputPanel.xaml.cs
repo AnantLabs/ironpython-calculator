@@ -56,5 +56,41 @@ namespace Calculator
             s = ConstantPanel.LookupConstant(s).ToString(new CultureInfo("En-US"));
             if (App.ConsoleWin != null) App.ConsoleWin.InsertInputText(s);
         }
+
+        public void CreatePanel(string Name)
+        {
+            TabItem tbitem = new TabItem();
+            tbitem.Header = Name;
+            ScrollViewer sw = new ScrollViewer();
+            sw.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            WrapPanel container = new WrapPanel();
+            container.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            sw.Content = container;
+            tbitem.Content = sw;
+            Tabs.Items.Add(tbitem);
+        }
+
+        public void AddButtonToPanel(string PanelName, string ButtonContent, string ButtonAction)
+        {
+            FncButton button = new FncButton();
+            TextBlock content = new TextBlock();
+            content.TextWrapping = TextWrapping.Wrap;
+            content.Text = ButtonContent;
+            content.TextAlignment = TextAlignment.Center;
+            button.Content = content;
+            button.InsertText = ButtonAction;
+            button.Click += new RoutedEventHandler(FunctionButtonAction);
+            button.Style = (Style)FindResource("FncButton");
+
+            foreach (TabItem i in Tabs.Items)
+            {
+                if (i.Header.ToString() == PanelName)
+                {
+                    ScrollViewer sw = (ScrollViewer)i.Content;
+                    (sw.Content as WrapPanel).Children.Add(button);
+                    break;
+                }
+            }
+        }
     }
 }

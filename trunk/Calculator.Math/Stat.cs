@@ -8,33 +8,40 @@ using System.Threading.Tasks;
 namespace Calculator.Mathematics
 {
     [ReflectionLoad]
+    [InputPanelGenerate(PanelName="Statistics", UseAliasNames=false)]
     public static class Stat
     {
+        [Alias(InputText="Minimum")]
         public static double Min(IronPython.Runtime.List list)
         {
             return list.AsParallel().Min(i => Convert.ToDouble(i));
         }
 
+        [Alias(InputText = "Maximum")]
         public static double Max(IronPython.Runtime.List list)
         {
             return list.AsParallel().Max(i => Convert.ToDouble(i));
         }
 
+        [Alias(InputText = "Sum")]
         public static double Sum(IronPython.Runtime.List list)
         {
             return list.AsParallel().Sum(i => Convert.ToDouble(i));
         }
 
+        [Alias(InputText = "Count")]
         public static double Count(IronPython.Runtime.List list)
         {
             return list.Count;
         }
 
+        [Alias(InputText = "Average")]
         public static double Avg(IronPython.Runtime.List list)
         {
             return list.AsParallel().Average(i => Convert.ToDouble(i));
         }
 
+        [Alias(InputText = "Harmonic Average")]
         public static double AvgHarmonic(IronPython.Runtime.List list)
         {
             double ret = 0;
@@ -45,6 +52,7 @@ namespace Calculator.Mathematics
             return list.Count / ret;
         }
 
+        [Alias(InputText = "Geometric Average")]
         public static double AvgGeometric(IronPython.Runtime.List list)
         {
             double ret = 1;
@@ -55,6 +63,7 @@ namespace Calculator.Mathematics
             return Math.Pow(ret, 1 / list.Count);
         }
 
+        [Alias(InputText = "Square Average")]
         public static double AvgSquare(IronPython.Runtime.List list)
         {
             double ret = 0;
@@ -65,6 +74,7 @@ namespace Calculator.Mathematics
             return Math.Pow(ret / list.Count, 1 / 2);
         }
 
+        [Alias(InputText = "Deviation")]
         public static double Deviat(IronPython.Runtime.List list)
         {
             double ret = 0;
@@ -76,16 +86,19 @@ namespace Calculator.Mathematics
             return ret / list.Count;
         }
 
+        [Alias(InputText = "Standard Deviation")]
         public static double DeviatStandard(IronPython.Runtime.List list)
         {
             return Math.Sqrt(Variance(list));
         }
 
+        [Alias(InputText = "Range")]
         public static double Range(IronPython.Runtime.List list)
         {
             return Max(list) - Min(list);
         }
 
+        [Alias(InputText = "Median")]
         public static double Median(IronPython.Runtime.List list)
         {
             var q = (from i in list orderby Convert.ToDouble(i) ascending select Convert.ToDouble(i)).AsParallel().ToList();
@@ -94,6 +107,7 @@ namespace Calculator.Mathematics
             return q[index];
         }
 
+        [Alias(InputText = "Maximum")]
         public static double Variance(IronPython.Runtime.List list)
         {
             double avg = Avg(list);
@@ -101,6 +115,7 @@ namespace Calculator.Mathematics
             return d / (list.Count - 1);
         }
 
+        [Alias(InputText = "Mode")]
         public static double Mode(IronPython.Runtime.List list)
         {
             var sortedList = (from number in list orderby Convert.ToDouble(number) select Convert.ToDouble(number)).AsParallel().ToList();
@@ -128,6 +143,7 @@ namespace Calculator.Mathematics
             return mode;
         }
 
+        [Alias(InputText = "Covariance")]
         public static double Covariance(IronPython.Runtime.List source, IronPython.Runtime.List other)
         {
             int len = source.Count;

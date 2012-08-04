@@ -7,6 +7,7 @@ using PluginApi;
 namespace Calculator.Mathematics
 {
     [ReflectionLoad]
+    [InputPanelGenerate(PanelName="Special Functions", UseAliasNames=true)]
     public static class Specials
     {
         private static int[] Primes = new int[]

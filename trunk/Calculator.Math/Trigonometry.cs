@@ -7,6 +7,7 @@ using PluginApi;
 namespace Calculator.Mathematics
 {
     [ReflectionLoad]
+    [InputPanelGenerate(UseAliasNames=true, PanelName="Trigonometry")]
     public static class Trigonometry
     {
         public static CalculatorMode CalcMode { get; set; }

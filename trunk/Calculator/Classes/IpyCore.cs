@@ -75,9 +75,9 @@ namespace Calculator.Classes
             {
                 _scope.SetVariable(name, value);
             }
-            catch (Exception) 
+            catch (Exception)
             {
- 
+
             }
         }
 
@@ -93,7 +93,7 @@ namespace Calculator.Classes
         {
             Dictionary<String, Object> options = new Dictionary<string, object>();
             options["DivisionOptions"] = PythonDivisionOptions.New;
-            
+
             _cstream = new NullStream();
             _cwriter = new EventRaisingStreamWriter(_cstream);
             _cwriter.StringWritten += new EventHandler<MyEvtArgs<string>>(_cwriter_StringWritten);
@@ -165,6 +165,7 @@ namespace Calculator.Classes
                                     if (t.IsClass) GetMethods(t);
                                     break;
                                 }
+
                             }
                         }
                         catch (Exception ex)
@@ -199,10 +200,27 @@ namespace Calculator.Classes
         {
             char[] letters = "abcdefghijklmnopqrtuvwxyz".ToArray();
             MethodInfo[] members = t.GetMethods();
-            string al, replace;
+            string al = null, replace, panelname = null, action, content = null;
             StringBuilder aliascommand = new StringBuilder();
             StringBuilder Body = new StringBuilder();
             int calllength;
+            bool panelfill = false, usealiases = false;
+
+            Attribute[] attribs = Attribute.GetCustomAttributes(t);
+            foreach (var atr in attribs)
+            {
+                if (atr is InputPanelGenerate)
+                {
+                    if (App.InputPanel != null)
+                    {
+                        panelname = (atr as InputPanelGenerate).PanelName;
+                        App.InputPanel.CreatePanel(panelname);
+                        usealiases = (atr as InputPanelGenerate).UseAliasNames;
+                        panelfill = true;
+                    }
+                }
+            }
+
             foreach (var member in members)
             {
                 calllength = member.GetParameters().Length;
@@ -213,7 +231,9 @@ namespace Calculator.Classes
                     if (attr is Alias)
                     {
                         aliascommand.Clear();
+                        content = (attr as Alias).InputText;
                         al = (attr as Alias).AliasName;
+                        if (string.IsNullOrEmpty(al)) break;
                         FilterList.Add(al);
                         replace = (t.FullName + "." + member.Name).Replace(t.Namespace + ".", "");
                         aliascommand.Append("def " + al);
@@ -232,6 +252,15 @@ namespace Calculator.Classes
                         _aliaslist.Add(aliascommand.ToString());
                         break;
                     }
+                }
+                if (panelfill && (al != null || content != null))
+                {
+                    if (usealiases) action = al;
+                    else action = t.Name + "." + member.Name;
+                    if (content == null) content = al;
+                    App.InputPanel.AddButtonToPanel(panelname, content, action);
+                    al = null;
+                    content = null;
                 }
             }
             PropertyInfo[] pi = t.GetProperties();
@@ -287,7 +316,7 @@ namespace Calculator.Classes
             if (CalcMode != null)
             {
                 if (CalcMode.Dispatcher.CheckAccess()) CalcMode.Text = s;
-                else CalcMode.Dispatcher.BeginInvoke( new Action(() =>
+                else CalcMode.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         CalcMode.Text = s;
                     }));

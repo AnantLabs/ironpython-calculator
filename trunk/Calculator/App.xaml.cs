@@ -16,6 +16,7 @@ namespace Calculator
     {
         internal static MainWindow ConsoleWin;
         internal static IpyCore Core;
+        internal static InputPanel InputPanel;
 
         private static DockWindow DockWin
         {

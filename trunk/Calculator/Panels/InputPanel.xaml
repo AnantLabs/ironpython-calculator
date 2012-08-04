@@ -5,8 +5,8 @@
         xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="InputPanel" DockableStyle="AutoHide" IsCloseable="False" IsLocked="True" mc:Ignorable="d" d:DesignHeight="1200" Width="250">
-    <TabControl TabStripPlacement="Bottom" Grid.Row="3">
+        Title="InputPanel" DockableStyle="AutoHide" IsCloseable="False" IsLocked="True" mc:Ignorable="d" d:DesignHeight="800" Width="250">
+    <TabControl TabStripPlacement="Bottom" Grid.Row="3" x:Name="Tabs">
         <TabItem Header="Numbers/Operators">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
@@ -81,126 +81,8 @@
                 </StackPanel>
             </ScrollViewer>
         </TabItem>
-        <TabItem Header="Functions">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <WrapPanel HorizontalAlignment="Center">
-                    <Button Style="{StaticResource FunctionButton}" Content="Mod" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="1/x" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Replus" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Fact" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Pow" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Sqr" Click="FunctionButtonAction"/>
-                    <Button Style="{StaticResource FunctionButton}" Content="Log" Click="FunctionButtonAction"/>
-                    <Button Style="{StaticResource FunctionButton}" Content="Percent" Click="FunctionButtonAction"/>
-                    <Button Style="{StaticResource FunctionButton}" Content="PercentOf" Click="FunctionButtonAction"/>
-                    <Button Style="{StaticResource FunctionButton}" Content="Gcd" Click="FunctionButtonAction"/>
-                    <Button Style="{StaticResource FunctionButton}" Content="Lcm" Click="FunctionButtonAction"/>
-                    <Button Style="{StaticResource FunctionButton}" Content="Db10" Click="FunctionButtonAction"/>
-                    <Button Style="{StaticResource FunctionButton}" Content="Db20" Click="FunctionButtonAction"/>
-                    <Button Style="{StaticResource FunctionButton}" Content="Rand" Click="FunctionButtonAction"/>
-                    <Button Style="{StaticResource FunctionButton}" Content="Randf" Click="FunctionButtonAction"/>
-                    <Button Style="{StaticResource FunctionButton}" Content="RandBit" Click="FunctionButtonAction"/>
-                </WrapPanel>
-            </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Trigonometry">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <WrapPanel HorizontalAlignment="Center">
-                    <Button Style="{StaticResource FunctionButton}" Content="Rad2Deg" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Deg2Rad" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Deg2Grad" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Grad2Deg" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Grad2Rad" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Rad2Grad" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Sin" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="ArcSin" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Cos" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="ArcCos" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Tan" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="ArcTan" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Sinh" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="ArcSinh" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Cosh" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="ArcCosh" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Tanh" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="ArcTanh" Click="FunctionButtonAction" />
-                </WrapPanel>
-            </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Specials">
-            <WrapPanel HorizontalAlignment="Center">
-                <Button Style="{StaticResource FunctionButton}" Content="Ack" Click="FunctionButtonAction" />
-                <Button Style="{StaticResource FunctionButton}" Content="IsTriangle" Click="FunctionButtonAction" />
-                <Button Style="{StaticResource FunctionButton}" Content="IsPrime" Click="FunctionButtonAction" />
-                <Button Style="{StaticResource FunctionButton}" Content="Fibonacci" Click="FunctionButtonAction" />
-            </WrapPanel>
-        </TabItem>
         <TabItem Header="Constants,Prefixes">
             <contr:ConstantPanel x:Name="ConstantPanel" ConstantButtonClick="ConstantPanel_ConstantButtonClick"></contr:ConstantPanel>
-        </TabItem>
-        <TabItem Header="Statistics &amp; Sets">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel>
-                    <TextBlock Text="Statistics"/>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <contr:FncButton Style="{StaticResource FncButton}" Content="Min" InsertText="Stat.Min(" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" Content="Max" InsertText="Stat.Max(" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" Content="Sum" InsertText="Stat.Sum(" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" Content="Count" InsertText="Stat.Count(" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" Content="Average" InsertText="Stat.Avg(" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" Content="Range" InsertText="Stat.Range" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" Content="Median" InsertText="Stat.Median" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" Content="Variance" InsertText="Stat.Variance" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" Content="Mode" InsertText="Stat.Mode" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" Content="Covariance" InsertText="Stat.Covariance" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" Content="Deviation" InsertText="Stat.Deviat" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" InsertText="Stat.DeviatStandard" Click="FunctionButtonAction">
-                            <contr:FncButton.Content>
-                                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Standard deviation"/>
-                            </contr:FncButton.Content>
-                        </contr:FncButton>
-                        <contr:FncButton Style="{StaticResource FncButton}" InsertText="Stat.AvgHarmonic" Click="FunctionButtonAction">
-                            <contr:FncButton.Content>
-                                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Harmonic average"/>
-                            </contr:FncButton.Content>
-                        </contr:FncButton>
-                        <contr:FncButton Style="{StaticResource FncButton}" InsertText="Stat.AvgGeometric" Click="FunctionButtonAction">
-                            <contr:FncButton.Content>
-                                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Geometric average"/>
-                            </contr:FncButton.Content>
-                        </contr:FncButton>
-                        <contr:FncButton Style="{StaticResource FncButton}" InsertText="Stat.AvgSquare" Click="FunctionButtonAction">
-                            <contr:FncButton.Content>
-                                <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Square average"/>
-                            </contr:FncButton.Content>
-                        </contr:FncButton>
-                    </WrapPanel>
-                    <TextBlock Text="Sets"/>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <contr:FncButton Style="{StaticResource FncButton}" InsertText="Lists.Merge" Content="Merge" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" InsertText="Lists.Clone" Content="Clone" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" InsertText="Lists.Subtract" Content="Subtract" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" InsertText="Lists.Excerpt" Content="Excerpt" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" InsertText="Lists.RandFill" Content="RandFill" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" InsertText="Lists.RandFillf" Content="RandFillf" Click="FunctionButtonAction"/>
-                        <contr:FncButton Style="{StaticResource FncButton}" InsertText="Lists.Fill" Content="Fill" Click="FunctionButtonAction"/>
-                    </WrapPanel>
-                </StackPanel>
-            </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Binary">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <WrapPanel HorizontalAlignment="Center">
-                    <Button Style="{StaticResource FunctionButton}" Content="Not" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Or" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="And" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Eq" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Xor" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Bitcount" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="Hamming" Click="FunctionButtonAction" />
-                    <Button Style="{StaticResource FunctionButton}" Content="NumSysConv" Click="FunctionButtonAction" />
-                </WrapPanel>
-            </ScrollViewer>
         </TabItem>
     </TabControl>
 </ad:DockableContent>
