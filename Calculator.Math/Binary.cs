@@ -7,6 +7,7 @@ using PluginApi;
 namespace Calculator.Mathematics
 {
     [ReflectionLoad]
+    [InputPanelGenerate(PanelName="Binary Funcions", UseAliasNames=true)]
     public static class Logics
     {
         private enum Operation

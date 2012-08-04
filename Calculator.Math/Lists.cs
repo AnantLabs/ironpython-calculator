@@ -9,8 +9,10 @@ using System.Collections.Generic;
 namespace Calculator.Mathematics
 {
     [ReflectionLoad]
+    [InputPanelGenerate(PanelName="List Functions", UseAliasNames=false)]
     public static class Lists
     {
+        [Alias(InputText="Mege lists")]
         public static List Merge(List l1, List l2)
         {
             List ret = new List();
@@ -25,6 +27,7 @@ namespace Calculator.Mathematics
             return ret;
         }
 
+        [Alias(InputText = "Clone List")]
         public static List Clone(List l)
         {
             List ret = new List();
@@ -35,6 +38,7 @@ namespace Calculator.Mathematics
             return ret;
         }
 
+        [Alias(InputText = "Subtract Lists")]
         public static List Subtract(List l1, List l2)
         {
             List ret = Clone(l1);
@@ -45,6 +49,7 @@ namespace Calculator.Mathematics
             return ret;
         }
 
+        [Alias(InputText = "Excerpt of lists")]
         public static List Excerpt(List l1, List l2)
         {
             List ret = new List();
@@ -55,6 +60,7 @@ namespace Calculator.Mathematics
             return ret;
         }
 
+        [Alias(InputText = "Randomize Item order")]
         public static void RandOrder(List l)
         {
             List<object> ret = l.OrderBy(emp => Guid.NewGuid()).AsParallel().ToList();
@@ -65,6 +71,7 @@ namespace Calculator.Mathematics
             });
         }
 
+        [Alias(InputText = "Fill with random numbers")]
         public static void RandFill(List l, int min, int max, int count)
         {
             Random r = new Random();
@@ -75,6 +82,7 @@ namespace Calculator.Mathematics
                 });
         }
 
+        [Alias(InputText = "Fill with random floats")]
         public static void RandFillf(List l, int count)
         {
             Random r = new Random();
@@ -85,6 +93,7 @@ namespace Calculator.Mathematics
             });
         }
 
+        [Alias(InputText = "Fill with value")]
         public static void Fill(List l, int count, double value)
         {
             l.Clear();

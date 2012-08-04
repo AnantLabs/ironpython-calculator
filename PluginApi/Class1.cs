@@ -9,11 +9,13 @@ namespace PluginApi
     public class Alias: Attribute
     {
         public string AliasName { get; set; }
+        public string InputText { get; set; }
         public Alias(string aliasname)
         {
-            if (string.IsNullOrEmpty(aliasname)) throw new ArgumentException("aliasname can't be null");
             this.AliasName = aliasname;
         }
+
+        public Alias() {}
     }
     
     [AttributeUsage(AttributeTargets.Class)]
@@ -36,5 +38,12 @@ namespace PluginApi
         {
             return Name.GetHashCode() ^ Value.GetHashCode();
         }
+    }
+
+    [AttributeUsage(AttributeTargets.Class)]
+    public class InputPanelGenerate: Attribute
+    {
+        public string PanelName { get; set; }
+        public bool UseAliasNames { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 namespace Calculator.Mathematics
 {
     [ReflectionLoad]
+    [InputPanelGenerate(PanelName="General Functions", UseAliasNames=true)]
     public static class DoubleMath
     {
         [Alias("Mod")]
@@ -124,6 +125,30 @@ namespace Calculator.Mathematics
             ulong number = BitConverter.ToUInt64(tmp, 0);
             ulong mask = (0xFFFFFFFFFFFFFFFF) >> bits;
             return number & mask;
+        }
+
+        [Alias("VariatNoRepeat")]
+        public static double VariationNoRepeat(double n, double k)
+        {
+            return Factor(n) / Factor(n - k);
+        }
+
+        [Alias("VariatRepeat")]
+        public static double VariationRepeat(double n, double k)
+        {
+            return Math.Pow(n, k);
+        }
+
+        [Alias("CombinNoRepeat")]
+        public static double CombinationNoRepeat(double n, double k)
+        {
+            return Factor(n) / (Factor(k) * Factor(n - k));
+        }
+
+        [Alias("CombinRepeat")]
+        public static double CombinationRepeat(double n, double k)
+        {
+            return CombinationNoRepeat(n + k - 1, k);
         }
     }
 }

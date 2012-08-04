@@ -23,6 +23,7 @@ namespace Calculator
             #if RELEASE
             AutoUpdater.Start("http://ironpython-calculator.googlecode.com/files/update.xml", true);
             #endif
+            App.InputPanel = this.InputPanel;
             App.ConsoleWin = this.ConsoleWin;
             DockPlane.ToggleAutoHide();
             ApplySettings();
@@ -59,12 +60,19 @@ namespace Calculator
 
         private void RunProgram(string path)
         {
-            Process p = new Process();
-            string upath = Environment.ExpandEnvironmentVariables(path);
-            if (File.Exists(upath)) p.StartInfo.FileName = upath;
-            else p.StartInfo.FileName = App.Core.AppDir + "\\" + upath;
-            p.StartInfo.UseShellExecute = true;
-            p.Start();
+            try
+            {
+                Process p = new Process();
+                string upath = Environment.ExpandEnvironmentVariables(path);
+                if (File.Exists(upath)) p.StartInfo.FileName = upath;
+                else p.StartInfo.FileName = App.Core.AppDir + "\\" + upath;
+                p.StartInfo.UseShellExecute = true;
+                p.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
