@@ -16,5 +16,16 @@ namespace Calculator
     {
         internal static MainWindow ConsoleWin;
         internal static IpyCore Core;
+
+        private static DockWindow DockWin
+        {
+            get { return (DockWindow)App.Current.MainWindow; }
+        }
+
+        internal static void SetTaskbarProgress(System.Windows.Shell.TaskbarItemProgressState State, double Value = 0)
+        {
+            DockWin.TaskBar.ProgressState = State;
+            DockWin.TaskBar.ProgressValue = Value;
+        }
     }
 }

@@ -4,6 +4,9 @@
         xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
         xmlns:internal="clr-namespace:Calculator"
         Title="Pyton Calculator" Height="500" Width="800" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo Description="IronPython Calculator" x:Name="TaskBar" ProgressState="None"/>
+    </Window.TaskbarItemInfo>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="22"/>
